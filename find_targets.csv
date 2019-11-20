@@ -1,0 +1,6 @@
+targ_path,cont_path,img_w_h
+imgs/targets/targ_B.jpg,imgs/contexts/cont_B.jpg,"[826,290]"
+imgs/targets/targ_1.jpg,imgs/contexts/cont_1.jpg,"[1280,290]"
+imgs/targets/targ_2.jpg,imgs/contexts/cont_2.jpg,"[1280,290]"
+imgs/targets/targ_3.jpg,imgs/contexts/cont_3.jpg,"[1280,290]"
+imgs/targets/targ_4.jpg,imgs/contexts/cont_4.jpg,"[1280,290]"
