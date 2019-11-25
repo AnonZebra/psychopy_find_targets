@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.1.5),
-    on Wed Nov 20 11:26:56 2019
+    on Mon Nov 25 13:56:41 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -236,10 +236,6 @@ testImg = visual.ImageStim(
 testMouse = event.Mouse(win=win)
 x, y = [None, None]
 testMouse.mouseClock = core.Clock()
-def makeCross(pos):
-    cross = visual.ShapeStim(win, pos=pos, depth=-2, vertices='cross', size=(5,5), lineColor=[-0.8, -0.8, 1], fillColor=[-0.8, -0.8, 1])
-    cross.setAutoDraw(True)
-    return cross
 image = visual.ImageStim(
     win=win,
     name='image', units='pix', 
@@ -506,6 +502,7 @@ practice_mouse.time = []
 gotValidClick = False  # until a click is received
 practice_mouse.mouseClock.reset()
 crosses = []
+last_press_time = 0
 practice_target.setImage('imgs/targets/targ_A.jpg')
 # keep track of which components have finished
 practice_aComponents = [practice_poly, practice_context, practice_mouse, practice_target]
@@ -581,8 +578,10 @@ while continueRoutine and routineTimer.getTime() > 0:
                 practice_mouse.midButton.append(buttons[1])
                 practice_mouse.rightButton.append(buttons[2])
                 practice_mouse.time.append(practice_mouse.mouseClock.getTime())
-    if testMouse.isPressedIn(practice_poly):
+    time_now = core.getTime()
+    if practice_mouse.isPressedIn(practice_poly) and (time_now - last_press_time) > 0.2:
         crosses.append(makeCross(practice_mouse.getPos()))
+        last_press_time = time_now
     
     # *practice_target* updates
     if t >= 0.0 and practice_target.status == NOT_STARTED:
@@ -1122,6 +1121,7 @@ for thisTrial in trials:
     gotValidClick = False  # until a click is received
     testMouse.mouseClock.reset()
     crosses = []
+    last_press_time = 0
     image.setImage(targ_path)
     # keep track of which components have finished
     testRoutComponents = [testPoly, testImg, testMouse, image]
@@ -1197,8 +1197,10 @@ for thisTrial in trials:
                     testMouse.midButton.append(buttons[1])
                     testMouse.rightButton.append(buttons[2])
                     testMouse.time.append(testMouse.mouseClock.getTime())
-        if testMouse.isPressedIn(testPoly):
+        time_now = core.getTime()
+        if testMouse.isPressedIn(testPoly) and (time_now - last_press_time) > 0.2:
             crosses.append(makeCross(testMouse.getPos()))
+            last_press_time = time_now
         
         # *image* updates
         if t >= 0.0 and image.status == NOT_STARTED:

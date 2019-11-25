@@ -100,12 +100,12 @@
         <Param name="timeRelativeTo" updates="constant" val="routine" valType="str"/>
       </MouseComponent>
       <CodeComponent name="code">
-        <Param name="Begin Experiment" updates="constant" val="def makeCross(pos):&amp;#10;    cross = visual.ShapeStim(win, pos=pos, depth=-2, vertices='cross', size=(5,5), lineColor=[-0.8, -0.8, 1], fillColor=[-0.8, -0.8, 1])&amp;#10;    cross.setAutoDraw(True)&amp;#10;    return cross" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="crosses = []" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="crosses = []&amp;#10;last_press_time = 0" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="if testMouse.isPressedIn(testPoly):&amp;#10;    crosses.append(makeCross(testMouse.getPos()))" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="time_now = core.getTime()&amp;#10;if testMouse.isPressedIn(testPoly) and (time_now - last_press_time) &gt; 0.2:&amp;#10;    crosses.append(makeCross(testMouse.getPos()))&amp;#10;    last_press_time = time_now" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -481,9 +481,9 @@
         <Param name="Begin Experiment" updates="constant" val="def makeCross(pos):&amp;#10;    cross = visual.ShapeStim(win, pos=pos, depth=-2, vertices='cross', size=(5,5), lineColor=[-0.8, -0.8, 1], fillColor=[-0.8, -0.8, 1])&amp;#10;    cross.setAutoDraw(True)&amp;#10;    return cross" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="crosses = []" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="crosses = []&amp;#10;last_press_time = 0" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="if testMouse.isPressedIn(practice_poly):&amp;#10;    crosses.append(makeCross(practice_mouse.getPos()))" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="time_now = core.getTime()&amp;#10;if practice_mouse.isPressedIn(practice_poly) and (time_now - last_press_time) &gt; 0.2:&amp;#10;    crosses.append(makeCross(practice_mouse.getPos()))&amp;#10;    last_press_time = time_now" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
